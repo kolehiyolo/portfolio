@@ -31,3 +31,13 @@ The "under-the-sea" theme of the project was mainly inspired by the portfolio pr
   * Used for the initial Hosting and the versioning
   * Although I must say that so much of the project has already been built before I decided to initialize Git and GitHub
   * Oh well
+
+## Recent Changes Made:
+1. I fixed the video link for the Snake Pit Project
+  1. Apparently, the link ended with "git" so the link didn't work
+
+
+
+
+## Things to do:
+1. Set up a slider for the projects

@@ -10,10 +10,12 @@ function buildBathypelagic() {
 
     // Now we add the Project Video
     $(`#bathypelagic-body`).append(`<div id="bathypelagic-video"></div>`);
-    $(`#bathypelagic-video`).addClass(`hidden anim-500`);
+    $(`#bathypelagic-video`).addClass(`anim-500`);
 
     // Now we build the Projects Grid
     $(`#bathypelagic-body`).append(`<div id="bathypelagic-projects"></div>`);
+    $(`#bathypelagic-projects`).append(`<div id="bp-nav-left" class="bp-nav"><</div>`);
+    $(`#bathypelagic-projects`).append(`<button id="bp-nav-right" class="bp-nav">></button>`);
     for (let i = 1; i <= projects.count; i++) {
         $(`#bathypelagic-projects`).append(`<div id="bathypelagic-project-${i}"></div>`);
         $(`#bathypelagic-project-${i}`).addClass(`bathypelagic-project`);
@@ -52,11 +54,8 @@ function showProjectInfo() {
     let cProjects = projects[`project${projects.active}`];
 
     setTimeout(() => {
-        // $(`#bathypelagic-info`).removeClass(`visible`);
-        $(`#bathypelagic-video`).removeClass(`visible`);
-
-        // $(`#bathypelagic-info`).addClass(`hidden`);
-        $(`#bathypelagic-video`).addClass(`hidden`);
+        $(`#bathypelagic-video-content`).removeClass(`visible`);
+        $(`#bathypelagic-video-content`).addClass(`hidden`);
     }, 1);
 
     $(`.bathypelagic-project-active`).addClass(`bathypelagic-project-unactive`);
@@ -89,6 +88,7 @@ function showProjectInfo() {
         $(`#bil-list-${i}-icon`).addClass(`${listItemIcon}`);
         $(`#bil-list-${i}-icon`).addClass(`bil-list-item-icon`);
     }
+    $(`.bil-list-item a`).attr(`target`,`_blank`);
 
     $(`#bathypelagic-info-technologies`).empty();
     $(`#bathypelagic-info-technologies`).append(`<p id="bite-list-title">Technologies</p>`);
@@ -106,10 +106,11 @@ function showProjectInfo() {
         $(`#bito-list-${i}`).addClass(`bito-list-item`);
     }
 
-    // $(`#bathypelagic-video`).html(`<video id="bathypelagic-video-content" autoplay controls loop></video>`);
     setTimeout(() => {
-        $(`#bathypelagic-video`).html(`<video id="bathypelagic-video-content" autoplay loop></video>`);
+        $(`#bathypelagic-video`).html(`<video id="bathypelagic-video-content" autoplay controls loop></video>`);
+        // $(`#bathypelagic-video`).html(`<video id="bathypelagic-video-content" autoplay loop></video>`);
         $(`#bathypelagic-video`).addClass(`bathypelagic-video-active`);
+        $(`#bathypelagic-video-content`).addClass(`hidden anim-500`);
         $(`#bathypelagic-video-content`).attr(`width`, `100%`);
         $(`#bathypelagic-video-content`).attr(`height`, `100%`);
         $(`#bathypelagic-video-content`).append(`<source type="video/mp4">`);
@@ -119,14 +120,9 @@ function showProjectInfo() {
     $(`#bathypelagic-button`).attr(`onClick`, `openProject()`);
     $(`#bathypelagic-button`).addClass(`bathypelagic-info-button-active`);
 
-    // }, 500);
-
     setTimeout(() => {
-        // $(`#bathypelagic-info`).addClass(`visible`);
-        $(`#bathypelagic-video`).addClass(`visible`);
-
-        // $(`#bathypelagic-info`).removeClass(`hidden`);
-        $(`#bathypelagic-video`).removeClass(`hidden`);
+        $(`#bathypelagic-video-content`).addClass(`visible`);
+        $(`#bathypelagic-video-content`).removeClass(`hidden`);
     }, 750);
 }
 
@@ -145,7 +141,7 @@ let projects = {
         video: `assets/videos/projects/my-portfolio.mp4`,
         live: `file:///Z:/Projects/Portfolio/index.html`,
         links: [
-            [`GitHub`, `https://www.google.com`],
+            [`GitHub`, `https://github.com/kolehiyolo/portfolio`],
             [`YouTube`, `https://www.youtube.com/watch?v=dQw4w9WgXcQ`],
             [`Dribbble`, `https://dribbble.com/`],
         ],
@@ -167,7 +163,7 @@ let projects = {
         name: `The Snake Pit`,
         description: `As I was exploring JavaScript and the DOM, I stumbled upon the idea of using a grid-based system to create an entirely web-based snake game. As the project progressed, however, it eventually grew to be an interesting 2-player game where each snake tries to trap/kill the other. After several iterations more, the game now has several snakes with their own unique set of skills that evoke different play-styles`,
         image: `assets/images/projects/the-snake-pit.png`,
-        video: `assets/videos/projects/the-snake-pit.mp4git `,
+        video: `assets/videos/projects/the-snake-pit.mp4`,
         live: `https://kolehiyolo.github.io/the_snake_pit/`,
         links: [
             [`GitHub`, `https://github.com/kolehiyolo/the_snake_pit`],
@@ -181,7 +177,6 @@ let projects = {
         ],
         tools: [
             `Visual Studio Code`,
-            `Adobe XD`,
             `Google Chrome`,
             `GitHub`,
         ],
