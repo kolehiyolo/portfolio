@@ -3,6 +3,7 @@
     z-index: 100;
     left: 50px;
     transition: 1.5s;
+    /* opacity: 0; */
 }
 
 .submaboat-underwater {

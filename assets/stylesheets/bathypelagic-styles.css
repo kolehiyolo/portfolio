@@ -3,39 +3,114 @@
     height: 100%;
     display: grid;
     grid-template-areas:
-        "bathypelagic-info bathypelagic-video"
-        "bathypelagic-info bathypelagic-projects"
-        "bathypelagic-button bathypelagic-projects";
-    grid-template-columns: 1fr 575px;
-    grid-template-rows: auto 80px 45px;
+        "bathypelagic-left bathypelagic right";
+    grid-template-columns: 275px 625px;
+    grid-template-rows: 1fr;
+    height: 490px;
+    /* gap: 25px; */
+}
+
+#bathypelagic-left {
+    display: grid;
+    grid-template-areas:
+    "bathypelagic-info"
+    "bathypelagic-button";
+    grid-template-rows: auto 45px;
     height: 490px;
     gap: 25px;
+    margin-right: 25px;
+}
+
+#bathypelagic-right {
+    display: grid;
+    grid-template-areas:
+    "bathypelagic-video"
+    "bathypelagic-projects";
+    /* gap: 25px; */
+    transition: 1s;
+    overflow: hidden;
+    height: 490px;
 }
 
 #bathypelagic-projects {
     grid-area: bathypelagic-projects;
     display: grid;
+    grid-template-areas:
+    "bathypelagic-projects-grid bathypelagic-projects-nav";
+    gap: 15px;
+    grid-template-columns: 575px 1fr;
+    box-sizing: border-box;
+    transition: 1s;
+}
+
+.bp-grid-mode #bathypelagic-video {
+    height: 0;
+    /* bottom:315px; */
+}
+
+.bp-grid-mode #bathypelagic-projects {
+    /* height: 0; */
+    margin-top: 0;
+}
+.bp-video-mode #bathypelagic-projects {
+    margin-top: 25px;
+}
+
+.bp-grid-mode #bathypelagic-projects-grid {
+    height: 490px
+}
+.bp-video-mode #bathypelagic-projects-grid {
+    height: 150px;
+}
+
+.bp-grid-mode #bathypelagic-nav {
+    height: 490px;
+}
+
+.bp-video-mode #bathypelagic-nav {
+    height: 150px;
+}
+
+#bathypelagic-video {
+    /* height: 315px; */
+}
+
+.bp-video-mode #bathypelagic-video{
+    /* margin-bottom: 25px; */
+    /* grid-template-rows: 315px auto; */
+    height: 315px;
+}
+
+#bathypelagic-projects-grid {
+    box-sizing: border-box;
+    grid-area: bathypelagic-projects-grid;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: repeat(auto-fill, 175px); */
+    /* height: 150px; */
     grid-template-rows: 150px;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
     justify-items: center;
     align-items: center;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-y: hidden;
     position: relative;
+    width: 575px;
+    scroll-behavior: smooth;
+    transition: 1s;
 }
 
 .bathypelagic-project {
+    display: inline-block;
     width: 175px;
     height: 150px;
-    width: 100%;
-    height: 100%;
     border-radius: 10px;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     position: relative;
 }
 
-.bathypelagic-project-unactive .bp-img{
+.bathypelagic-project-unactive .bp-img {
     opacity: 1;
 }
 
@@ -45,44 +120,47 @@
 }
 
 .bathypelagic-project-active .bp-name {
-    opacity: 1  ;
+    opacity: 1;
 }
 
 .bp-img {
     transition: 0.5s;
 }
 
-.bp-nav {
-    color: white;
-    /* border: solid 1px white; */
-    text-align: center;
-    padding: 57.5px 0;
-    height: 100%;
-    width: 50px;
-    position: absolute;
-    z-index: 500;
-    font-size: 30px;
-    font-weight: 800;
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    transition: 0.25s;
-    border: none;
+
+#bathypelagic-nav {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    transition: 1s;
 }
 
-.bp-nav:hover {
+.bp-nav {
+    color: rgba(255, 255, 255, 1);
+    border: solid 1px white;
+    text-align: center;
+    z-index: 500;
+    font-size: 25px;
+    font-weight: 800;
+    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.25s;
+    border: none;
+    width: 30px;
+    height: 0px;
+    box-sizing: border-box;
     opacity: 1;
 }
 
-#bp-nav-left {
-    left: 0;
-    border-radius: 25px 0 0 25px;
-}
-#bp-nav-right {
-    right: 0;
-    border-radius: 0 25px 25px 0;
+.bp-nav:hover {
+    opacity: 0.5;
 }
 
-.bathypelagic-project:hover .bp-img{
+.bp-nav-active {
+    opacity: 0.5;
+}
+
+.bathypelagic-project:hover .bp-img {
     opacity: 0.4;
     background-color: white;
 }
@@ -97,7 +175,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 200;
     text-transform: uppercase;
     font-size: 20px;
@@ -157,7 +235,8 @@
     text-decoration: none;
 }
 
-#bathypelagic-info-technologies, #bathypelagic-info-tools {
+#bathypelagic-info-technologies,
+#bathypelagic-info-tools {
     border: solid 2px white;
     border: solid 2px #b3cae2;
     border-radius: 10px;
@@ -170,7 +249,8 @@
     margin: 10px 0;
 }
 
-.bite-list-item, .bito-list-item {
+.bite-list-item,
+.bito-list-item {
     list-style-type: none;
     display: inline-block;
     border: solid 2px white;
@@ -179,7 +259,8 @@
     margin: 5px;
 }
 
-#bite-list-title, #bito-list-title {
+#bite-list-title,
+#bito-list-title {
     position: absolute;
     top: -15px;
     text-transform: lowercase;
@@ -200,17 +281,23 @@
 }
 
 #bathypelagic-video {
+    grid-area: bathypelagic-video;
+    position: relative;
+    bottom: 0;
+    transition: 1s;
     /* border: solid 5px rgba(255, 255, 255, 0.5); */
     /* border-radius: 10px; */
     /* padding: 20px; */
+    width: 575px;
+    height: 100%;
     width: 100%;
     height: 100%;
-    width: 575px;
-    height: 315px;
+    /* height: 315px; */
 }
 
 #bathypelagic-video-content {
     border-radius: 10px;
+    width: 100%;
 }
 
 .bathypelagic-video-active {
@@ -249,12 +336,12 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    border-radius: 25px;
+    /* border-radius: 25px; */
 }
 
 .bp-img {
     border-radius: 10px;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     width: 100%;
     height: 100%;
     object-fit: cover;

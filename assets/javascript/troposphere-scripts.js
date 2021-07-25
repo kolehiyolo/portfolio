@@ -9,7 +9,8 @@ function buildTroposphere() {
     $(`#troposphere-header`).append(`<h2 id="troposphere-intro-2"></h2>`)
     $(`#troposphere-header h1, #troposphere-header h2`).addClass(`troposphere-header-elements`);
     $(`#troposphere-intro-1`).html(`Hi, I'm Tristan`);
-    $(`#troposphere-intro-2`).html(`just a creative`);
+    // $(`#troposphere-intro-2`).html(`just a creative`);
+    $(`#troposphere-intro-2`).html(`and this page is still a work-in-progress`);
 }
 
 buildTroposphere();

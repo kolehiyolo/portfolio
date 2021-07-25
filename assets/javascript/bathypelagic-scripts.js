@@ -1,6 +1,9 @@
 function buildBathypelagic() {
+    // LEFT
+    $(`#bathypelagic-body`).append(`<div id="bathypelagic-left"></div>`);
+
     // Here we build the Info panel
-    $(`#bathypelagic-body`).append(`<div id="bathypelagic-info"></div>`);
+    $(`#bathypelagic-left`).append(`<div id="bathypelagic-info"></div>`);
     $(`#bathypelagic-info`).addClass(`anim-500`);
     $(`#bathypelagic-info`).append(`<p id="bathypelagic-info-name"></p>`);
     $(`#bathypelagic-info`).append(`<p id="bathypelagic-info-description"></p>`);
@@ -8,16 +11,67 @@ function buildBathypelagic() {
     $(`#bathypelagic-info`).append(`<div id="bathypelagic-info-technologies"></div>`);
     $(`#bathypelagic-info`).append(`<div id="bathypelagic-info-tools"></div>`);
 
+    // Finally, we add the Explore Button
+    $(`#bathypelagic-left`).append(`<button id="bathypelagic-button"></button>`);
+    $(`#bathypelagic-button`).attr(`type`, `button`);
+    $(`#bathypelagic-button`).html(`Explore`);
+
+    // RIGHT
+    $(`#bathypelagic-body`).append(`<div id="bathypelagic-right"></div>`);
     // Now we add the Project Video
-    $(`#bathypelagic-body`).append(`<div id="bathypelagic-video"></div>`);
-    $(`#bathypelagic-video`).addClass(`anim-500`);
+    $(`#bathypelagic-right`).append(`<div id="bathypelagic-video"></div>`);
+    // $(`#bathypelagic-video`).addClass(`anim-500`);
+
+    // Now we add the Project Navigation panel
+    $(`#bathypelagic-right`).append(`<div id="bathypelagic-projects"></div>`);
+    $(`#bathypelagic-projects`).append(`<div id="bathypelagic-nav"></div>`);
+    $(`#bathypelagic-nav`).append(`<button id="bp-nav-up" class="bp-nav"><i class="fas fa-arrow-up"></i></button>`);
+    $(`#bathypelagic-nav`).append(`<button id="bp-nav-grid" class="bp-nav"><i class="fas fa-th"></i></button>`);
+    $(`#bathypelagic-nav`).append(`<button id="bp-nav-video" class="bp-nav"><i class="fas fa-video"></i></button>`);
+    $(`#bathypelagic-nav`).append(`<button id="bp-nav-down" class="bp-nav"><i class="fas fa-arrow-down"></i></button>`);
+    $(`.bp-nav`).click(function () {
+        switch (this.id) {
+            case `bp-nav-up`:
+                projectsNav.active = `up`;
+                projectsNav.row = (projectsNav.row === 1) ? 1 : parseInt(projectsNav.row) - 1;
+                // projectsNav.row = parseInt(projectsNav.row)-1;
+                break;
+            case `bp-nav-down`:
+                projectsNav.active = `down`;
+                projectsNav.row = (projectsNav.row === projectsNav.rows) ? projectsNav.row : parseInt(projectsNav.row) + 1;
+                // projectsNav.row = parseInt(projectsNav.row)+1;
+                break;
+            case `bp-nav-video`:
+                projectsNav.active = `video`;
+                // projectsNav.mode = `video`;
+                break;
+            case `bp-nav-grid`:
+                projectsNav.active = `grid`;
+                // projectsNav.mode = `grid`;
+                break;
+        }
+        // console.log(`${this.id} is clicked!`);
+        // console.log(`YO = ${projectsNav.active}`);
+        switch (projectsNav.active) {
+            case `up`:
+            case `down`:
+                navProjects();
+                break;
+            case `video`:
+            case `grid`:
+                changeProjectsMode();
+                break;
+        }
+    });
+    projectsNav.position = [];
+    for (let i = 0; i < projectsNav.rows; i++) {
+        projectsNav.position[i] = i * 165;
+    }
 
     // Now we build the Projects Grid
-    $(`#bathypelagic-body`).append(`<div id="bathypelagic-projects"></div>`);
-    $(`#bathypelagic-projects`).append(`<div id="bp-nav-left" class="bp-nav"><</div>`);
-    $(`#bathypelagic-projects`).append(`<button id="bp-nav-right" class="bp-nav">></button>`);
+    $(`#bathypelagic-projects`).append(`<div id="bathypelagic-projects-grid"></div>`);
     for (let i = 1; i <= projects.count; i++) {
-        $(`#bathypelagic-projects`).append(`<div id="bathypelagic-project-${i}"></div>`);
+        $(`#bathypelagic-projects-grid`).append(`<div id="bathypelagic-project-${i}"></div>`);
         $(`#bathypelagic-project-${i}`).addClass(`bathypelagic-project`);
         $(`#bathypelagic-project-${i}`).addClass(`anim-500`);
         $(`#bathypelagic-project-${i}`).click(function () {
@@ -42,11 +96,28 @@ function buildBathypelagic() {
         $(`#bp-${i}-name`).append(`${projects[`project${i}`].name}`);
     }
     $(`.bathypelagic-project`).addClass(`bathypelagic-project-unactive`);
+}
 
-    // Finally, we add the Explore Button
-    $(`#bathypelagic-body`).append(`<button id="bathypelagic-button"></button>`);
-    $(`#bathypelagic-button`).attr(`type`, `button`);
-    $(`#bathypelagic-button`).html(`Explore`);
+function navProjects() {
+    let activeRowItem = parseInt(projectsNav.row) * 3 - 2;
+    activeRowItem = `bathypelagic-project-${activeRowItem}`;
+
+    $(`#bathypelagic-projects-grid`).stop().animate({
+        scrollTop: projectsNav.position[projectsNav.row - 1]
+    }, 10, `swing`, function () {});
+}
+
+function changeProjectsMode() {
+    console.log(`changeProjectsMode()`);
+    console.log(`projectsNav.mode = ${projectsNav.mode}`);
+    console.log(`projectsNav.active = ${projectsNav.active}`);
+    if (projectsNav.mode === projectsNav.active) {} else {
+        projectsNav.mode = String(projectsNav.active);
+        $(`#bathypelagic-right`).removeClass(`bp-video-mode`);
+        $(`#bathypelagic-right`).removeClass(`bp-grid-mode`);
+        $(`#bathypelagic-right`).addClass(`bp-${projectsNav.mode}-mode`);
+    }
+
 }
 
 function showProjectInfo() {
@@ -88,7 +159,7 @@ function showProjectInfo() {
         $(`#bil-list-${i}-icon`).addClass(`${listItemIcon}`);
         $(`#bil-list-${i}-icon`).addClass(`bil-list-item-icon`);
     }
-    $(`.bil-list-item a`).attr(`target`,`_blank`);
+    $(`.bil-list-item a`).attr(`target`, `_blank`);
 
     $(`#bathypelagic-info-technologies`).empty();
     $(`#bathypelagic-info-technologies`).append(`<p id="bite-list-title">Technologies</p>`);
@@ -116,7 +187,7 @@ function showProjectInfo() {
         $(`#bathypelagic-video-content`).append(`<source type="video/mp4">`);
         $(`#bathypelagic-video-content source`).attr(`src`, `${cProjects.video}`);
     }, 500);
-    
+
     $(`#bathypelagic-button`).attr(`onClick`, `openProject()`);
     $(`#bathypelagic-button`).addClass(`bathypelagic-info-button-active`);
 
@@ -133,17 +204,18 @@ function openProject() {
 
 let projects = {
     active: 1,
+    // count: 14,
     count: 7,
     project1: {
         name: `My Portfolio`,
         description: `This project is where so much of my skills are poured into. Here I showcase my expertise with Web Design and Development, as well as my familiarity with Game Design principles. I built everything that you see here from scratch, from the sounds to the vector illustrations and even the different web functionalities`,
         image: `assets/images/projects/my-portfolio.png`,
         video: `assets/videos/projects/my-portfolio.mp4`,
-        live: `file:///Z:/Projects/Portfolio/index.html`,
+        live: `https://kolehiyolo.github.io/portfolio/`,
         links: [
             [`GitHub`, `https://github.com/kolehiyolo/portfolio`],
-            [`YouTube`, `https://www.youtube.com/watch?v=dQw4w9WgXcQ`],
-            [`Dribbble`, `https://dribbble.com/`],
+            // [`YouTube`, `https://www.youtube.com/watch?v=dQw4w9WgXcQ`],
+            // [`Dribbble`, `https://dribbble.com/`],
         ],
         technologies: [
             `HTML5`,
@@ -181,10 +253,110 @@ let projects = {
             `GitHub`,
         ],
     },
+    project3: {
+        name: `Build a Tribute Page`,
+        description: `As part of the Responsive Web Design Certification from freeCodeCamp, I built this simple page by copying the sample CodePen page as closely as possible, down to the Responsive CSS properties.`,
+        image: `assets/images/projects/fcc-build-a-tribute-page.png`,
+        video: `assets/videos/projects/fcc-build-a-tribute-page.mp4`,
+        live: `https://kolehiyolo.github.io/freeCodeCamp_projects/pages/C01%20-%20Responsive%20Web%20Design/pages/C01P01%20-%20Build%20a%20Tribute%20Page/index.html`,
+        links: [
+            [`GitHub`, `https://github.com/kolehiyolo/the_snake_pit`],
+        ],
+        technologies: [
+            `HTML5`,
+            `CSS3`,
+            `Git`,
+        ],
+        tools: [
+            `Visual Studio Code`,
+            `Google Chrome`,
+            `GitHub`,
+        ],
+    },
+    project4: {
+        name: `Build a Survey Form`,
+        description: `As part of the Responsive Web Design Certification from freeCodeCamp, I built this simple page by copying the sample CodePen page as closely as possible, down to the Responsive CSS properties.`,
+        image: `assets/images/projects/fcc-build-a-survey-form.png`,
+        video: `assets/videos/projects/fcc-build-a-survey-form.mp4`,
+        live: `https://kolehiyolo.github.io/freeCodeCamp_projects/pages/C01%20-%20Responsive%20Web%20Design/pages/C01P02%20-%20Build%20a%20Survey%20Form/index.html`,
+        links: [
+            [`GitHub`, `https://github.com/kolehiyolo/the_snake_pit`],
+        ],
+        technologies: [
+            `HTML5`,
+            `CSS3`,
+            `Git`,
+        ],
+        tools: [
+            `Visual Studio Code`,
+            `Google Chrome`,
+            `GitHub`,
+        ],
+    },
+    project5: {
+        name: `Build a Product Landing Page`,
+        description: `As part of the Responsive Web Design Certification from freeCodeCamp, I built this simple page by copying the sample CodePen page as closely as possible, down to the Responsive CSS properties.`,
+        image: `assets/images/projects/fcc-build-a-product-landing-page.png`,
+        video: `assets/videos/projects/fcc-build-a-survey-form.mp4`,
+        live: `https://kolehiyolo.github.io/freeCodeCamp_projects/pages/C01%20-%20Responsive%20Web%20Design/pages/C01P03%20-%20Build%20a%20Product%20Landing%20Page/index.html`,
+        links: [
+            [`GitHub`, `https://github.com/kolehiyolo/the_snake_pit`],
+        ],
+        technologies: [
+            `HTML5`,
+            `CSS3`,
+            `Git`,
+        ],
+        tools: [
+            `Visual Studio Code`,
+            `Google Chrome`,
+            `GitHub`,
+        ],
+    },
+    project6: {
+        name: `Build a Technical Documentation Page`,
+        description: `As part of the Responsive Web Design Certification from freeCodeCamp, I built this simple page by copying the sample CodePen page as closely as possible, down to the Responsive CSS properties.`,
+        image: `assets/images/projects/fcc-build-a-technical-documentation-page.png`,
+        video: `assets/videos/projects/fcc-build-a-survey-form.mp4`,
+        live: `https://kolehiyolo.github.io/freeCodeCamp_projects/pages/C01%20-%20Responsive%20Web%20Design/pages/C01P04%20-%20Build%20a%20Technical%20Documentation%20Page/index.html`,
+        links: [
+            [`GitHub`, `https://github.com/kolehiyolo/the_snake_pit`],
+        ],
+        technologies: [
+            `HTML5`,
+            `CSS3`,
+            `Git`,
+        ],
+        tools: [
+            `Visual Studio Code`,
+            `Google Chrome`,
+            `GitHub`,
+        ],
+    },
+    project7: {
+        name: `Build a Personal Portfolio Webpage`,
+        description: `As part of the Responsive Web Design Certification from freeCodeCamp, I built this simple page by copying the sample CodePen page as closely as possible, down to the Responsive CSS properties.`,
+        image: `assets/images/projects/fcc-build-a-personal-portfolio-webpage.png`,
+        video: `assets/videos/projects/fcc-build-a-survey-form.mp4`,
+        live: `https://kolehiyolo.github.io/freeCodeCamp_projects/pages/C01%20-%20Responsive%20Web%20Design/pages/C01P05%20-%20Build%20a%20Personal%20Portfolio%20Webpage/index.html`,
+        links: [
+            [`GitHub`, `https://github.com/kolehiyolo/the_snake_pit`],
+        ],
+        technologies: [
+            `HTML5`,
+            `CSS3`,
+            `Git`,
+        ],
+        tools: [
+            `Visual Studio Code`,
+            `Google Chrome`,
+            `GitHub`,
+        ],
+    },
 }
 
 function createDummyProjects() {
-    for (let i = 3; i <= projects.count; i++) {
+    for (let i = 8; i <= projects.count; i++) {
         projects[`project${i}`] = JSON.parse(JSON.stringify(projects.project1));
         projects[`project${i}`].name = `Project ${i}`;
         projects[`project${i}`].image = `assets/images/projects/dummy-project.jpg`;
@@ -193,6 +365,15 @@ function createDummyProjects() {
     }
 }
 
+let projectsNav = {
+    rows: Math.ceil(parseInt(projects.count) / 3),
+    active: `video`,
+    row: 1,
+    mode: `grid`,
+};
+
+
 createDummyProjects();
 buildBathypelagic();
 showProjectInfo();
+changeProjectsMode()
