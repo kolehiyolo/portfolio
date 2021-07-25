@@ -1,0 +1,18 @@
+#hadalpelagic-layer {
+    min-height: calc(100vh - 100px);
+    position: relative;
+}
+
+#hadalpelagic-trenches {
+    position: absolute;
+    bottom: -5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hadalpelagic-trench {
+    align-self: flex-end;
+}

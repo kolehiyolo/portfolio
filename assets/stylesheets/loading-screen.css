@@ -1,0 +1,38 @@
+#surface-objects {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hide-surface-objects {
+    left: 100vw !important;
+}
+
+.hide-navbar {
+    top: -100px !important;
+}
+
+.hide-gaugelinks {
+    height: 0 !important;
+}
+
+.hide-gaugebar {
+    top: 50% !important;
+}
+
+.anim-500 {
+    transition: 500ms;
+}
+
+.anim-1000 {
+    transition: 1000ms;
+}
+
+.anim-3000 {
+    transition: 3000ms;
+}
+
+.anim-5000 {
+    transition: 5000ms;
+}

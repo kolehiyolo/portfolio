@@ -1,0 +1,54 @@
+#troposphere-layer {
+    min-height: 90vh;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#troposphere-island {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.troposphere-cloud {
+    position: absolute;
+    opacity: 0.8;
+}
+
+#troposphere-cloud-1 {
+    top: 25%;
+    left: 50%;
+    transform: translate(250px, -50%);
+}
+
+#troposphere-cloud-2 {
+    top: 35%;
+    right: 50%;
+    transform: translate(-250px, -50%);
+}
+
+#troposphere-header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.troposphere-header-elements {
+    font-family: "Raleway", sans-serif;
+}
+
+#troposphere-intro-1 {
+    text-shadow: 5px 5px white;
+    color: #160E4B;
+    font-size: 50px;
+}
+#troposphere-intro-2 {
+    /* text-shadow: 5px 5px white; */
+    color: #160E4B;
+    font-style: italic;
+    margin-top: 30px;
+}

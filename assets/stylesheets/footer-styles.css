@@ -1,0 +1,17 @@
+footer {
+    background-color: #04001E;
+    height: 100px;
+    padding: 20px;;
+    text-align: center;
+}
+
+#footer-copyright {
+    margin: 20px;
+}
+
+#footer-copyright-text {
+    color: lightgrey;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    /* text-transform: uppercase; */
+}

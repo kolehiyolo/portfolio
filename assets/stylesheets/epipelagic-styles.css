@@ -1,0 +1,107 @@
+#epipelagic-layer {
+    position: relative;
+}
+
+#epipelagic-content {}
+
+#epipelagic-body {
+    display: grid;
+    grid-template-areas: 
+    "epipelagic-text epipelagic-img-div"
+    "epipelagic-text epipelagic-img-caption"
+    "epipelagic-text epipelagic-button";
+    grid-template-columns: 1fr 325px;
+    grid-template-rows: auto auto auto;
+    align-items: start;
+    gap: 30px 50px;
+    width: 100%;
+}
+
+#epipelagic-text {
+    grid-area: epipelagic-text;
+}
+
+#epipelagic-text p {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    text-shadow: 2.5px 2.5px 5px #160E4B;
+    margin-bottom: 25px;
+}
+
+#epipelagic-img-div {
+    grid-area: epipelagic-img-div;
+    height: 325px;
+    position: relative;
+}
+
+#epipelagic-img {
+    width: 300px;
+    position: relative;
+    z-index: 10;
+    border-radius: 25px;
+}
+
+#epipelagic-img-filter {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 25px;
+    opacity: 0.25;
+    background-color: #35A0CF;
+    z-index: 100;
+}
+
+#epipelagic-img-shadow {
+    width: 300px;
+    height: 300px;
+    border: solid 5px white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    opacity: 0.5;
+}
+
+#epipelagic-img-caption {
+    position: relative;
+    z-index: 200;
+    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-style: italic;
+    font-size: 15px;
+}
+
+#epipelagic-button {
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    text-transform: lowercase;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 50px;
+}
+
+#epipelagic-img-filter, #epipelagic-img-caption, #epipelagic-button {
+    transition-duration: 1s;
+}
+
+#epipelagic-img-caption, #epipelagic-button {
+    opacity: 0;
+}
+
+#epipelagic-box:hover #epipelagic-img-filter{
+    opacity: 0;
+}
+
+#epipelagic-box:hover #epipelagic-img-caption{
+    opacity: 1;
+}
+
+#epipelagic-box:hover #epipelagic-button{
+    opacity: 1;
+}

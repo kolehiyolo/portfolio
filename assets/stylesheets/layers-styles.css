@@ -1,0 +1,158 @@
+#fonts {
+    font-family: 'Raleway', sans-serif;
+}
+
+html * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+.layers {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.layer-box {
+    position: absolute;
+    top: 52.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1050px;
+    height: 700px;
+    /* height: 750px; */
+    border-radius: 50px;
+    z-index: 50;
+    /* padding: 75px; */
+}
+
+/* FIXME */
+.layer-content {
+    position: relative;
+    z-index: 200;
+    display: grid;
+    grid-template-areas:
+        "layer-header"
+        "layer-body";
+    grid-template-rows: auto auto;
+    gap: 40px;
+        padding: 50px 75px;
+}
+
+.layer-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px 40px;
+    border-radius: 100px;
+}
+
+.layer-header-title {
+    display: inline-block;
+    
+    color: white;
+    text-shadow: 5px 5px #160E4B;
+    font-family: 'Raleway', sans-serif;
+    font-style: italic;
+    font-size: 30px;
+}
+
+.layer-header-hr {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    border-top: dotted 10px white;
+    border-top: solid 5px white;
+    border-radius: 10px;
+    opacity: 0.5;
+    opacity: 0;
+}
+
+/* FIXABOVE */
+
+.layer-box-background {
+    position: absolute;
+    top:0;
+    left:0;
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(farthest-side at -110% 50%, white, #016EAC);
+    opacity: 0.5;
+    opacity: 0.25;
+    opacity: 0;
+    z-index: 1;
+    transition-duration: 1s;
+}
+
+.layer-box:hover .layer-box-background {
+    /* opacity: 0.35; */
+}
+
+/* .troposphere-gradient {
+    background-image: linear-gradient(to bottom, #5AD0FF, #A7EBFF);
+}
+
+.troposphere-gradient {
+    background-image: linear-gradient(to bottom, #32abdb, #A7EBFF);
+}
+
+.epipelagic-gradient {
+    background-image: linear-gradient(to bottom, #6DD2FA, #1383AF);
+}
+.epipelagic-gradient {
+    background-image: linear-gradient(to bottom, #6bc3e6, #1383AF);
+}
+
+.mesopelagic-gradient {
+    background-image: linear-gradient(to bottom, #3CA4E9, #004D84);
+}
+
+.bathypelagic-gradient {
+    background-image: linear-gradient(to bottom, #1B6DBF, #002358);
+}
+
+.abyssopelagic-gradient {
+    background-image: linear-gradient(to bottom, #1A40A7, #070541);
+}
+
+.hadalpelagic-gradient {
+    background-image: linear-gradient(to bottom, #160E4B, #08015B);
+    background-image: linear-gradient(to bottom, #160E4B, #060146);
+} */
+
+.epipelagic-gradient {
+    background-image: linear-gradient(to bottom, rgba(107, 195, 230, 0.4), rgba(19, 131, 175, 0.2));
+}
+
+.mesopelagic-gradient {
+    background-image: linear-gradient(to bottom, rgba(60, 164, 233,0.3),rgba(0, 77, 132, 0.2));
+}
+
+.bathypelagic-gradient {
+    background-image: linear-gradient(to bottom, rgba(27, 109, 191, 0.3), rgba(0, 35, 88, 0.2));
+}
+
+.abyssopelagic-gradient {
+    background-image: linear-gradient(to bottom, rgba(26, 64, 167, 0.3), rgba(7, 5, 65, 0.2));
+}
+
+.hadalpelagic-gradient {
+    background-image: linear-gradient(to bottom, rgba(22, 14, 75, 0.3), rgba(6, 1, 70, 0.2));
+}
+
+.troposphere-gradient {
+    background-image: linear-gradient(to bottom, #32abdb, #A7EBFF);
+}
+
+main {
+    background-image: linear-gradient(to bottom, #4bcaf1, #060146) !important;
+}

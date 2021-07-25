@@ -1,0 +1,42 @@
+#submaboat {
+    position: fixed;
+    z-index: 100;
+    left: 50px;
+    transition: 1.5s;
+}
+
+.submaboat-underwater {
+    opacity: 0.5;
+    bottom: 50%;
+    transform: rotate(0deg);
+}
+
+.submaboat-go-up {
+    opacity: 0.5;
+    bottom: 30%;
+    transform: rotate(-15deg);
+}
+
+.submaboat-go-down {
+    opacity: 0.5;
+    bottom: 70%;
+    transform: rotate(15deg);
+}
+
+.submaboat-docked {
+    bottom: 9.5%;
+    opacity: 1;
+    /* transition: 0.1s; */
+}
+
+.submaboat-submerging {
+    opacity: 0.5;
+    bottom: 30%;
+    transform: rotate(20deg);
+}
+
+.submaboat-surfacing {
+    opacity: 0.5;
+    bottom: 5%;
+    transform: rotate(-20deg);
+}
